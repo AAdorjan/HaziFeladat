@@ -122,7 +122,116 @@ def feladat_11():
     a = datetime(1999, 2, 15)
     now = datetime.now()
     days=(now - a).days
-    print(days)
+    print("Megélt napok száma: ",days)
+
+def feladat_12(maxpont,elertpont):
+    if elertpont>= maxpont*0.6:
+        print("Sikeres")
+    else:
+        print("Sikertelen")
+
+def feladat_13(jegy):
+    if jegy==1:
+        print("Elegtelen")
+    elif jegy==2:
+        print("Elegseges")
+    elif jegy==3:
+        print("Kozepes")
+    elif jegy == 4:
+        print("Jo")
+    elif jegy==5:
+        print("Kivalo")
+
+def feladat_14(honapszama):
+    if honapszama==1:
+        print("Januar")
+    elif honapszama==2:
+        print("Februar")
+    elif honapszama==3:
+        print("Marcius")
+    elif honapszama==4:
+        print("Aprilis")
+    elif honapszama==5:
+        print("Majus")
+    elif honapszama==6:
+        print("Junius")
+    elif honapszama==7:
+        print("Julius")
+    elif honapszama==8:
+        print("Augusztus")
+    elif honapszama==9:
+        print("Szeptember")
+    elif honapszama==10:
+        print("Oktober")
+    elif honapszama==11:
+        print("November")
+    elif honapszama==12:
+        print("December")
+
+def feladat_15(a,b):
+    hanyados=0
+    while a>=b:
+        hanyados= hanyados+1
+        a=a-b
+    print(hanyados)
+
+def feladat_16(a,b):
+    while True:
+        r=a%b
+        a=b
+        b=r
+        if r==0:
+            break
+    print(a)
+
+def feladat_17(n):
+    masolat=n
+    uj_szam=0
+    while n!=0:
+        szj = n%10
+        uj_szam=uj_szam*10+szj
+        n=n//10
+    print(uj_szam==masolat)
+
+def feldat_18(x,y):
+    eredmeny = 0
+    while y != 0:
+        if (y % 2 != 0):
+            eredmeny = eredmeny + x
+            x = x * 2
+            y = y // 2
+        if (y % 2 == 0):
+            x = x * 2
+            y = y // 2
+    print("Az eredmeny: ", (eredmeny))
+
+def feladat_19(n):
+    prim=True
+    if n==1:
+        prim=False
+    for i in range(2,int(mt.sqrt(n))+1):
+        if n%i==0:
+            prim= False
+            break
+    print(prim)
+
+def feladat_20(n):
+    a=1
+    b=1
+    if n==1:
+        print(a)
+    elif n==2:
+        print(a,b)
+    else:
+        c=a+b
+        print(a,b,c)
+        k=3
+        while k<n:
+            a=b
+            b=c
+            c=a+b
+            print(c)
+            k+=1
 
 def main():
     feladat_1(10,5)
@@ -138,6 +247,14 @@ def main():
     feladat9(1,10,20)
     feladat_10(1980,2400)
     feladat_11()
-
+    feladat_12(100,63)
+    feladat_13(4)
+    feladat_14(2)
+    feladat_15(100,20)
+    feladat_16(360,225)
+    feladat_17(131)
+    feldat_18(45,17)
+    feladat_19(7)
+    feladat_20(5)
 if __name__=="__main__":
     main()
