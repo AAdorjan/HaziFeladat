@@ -1,3 +1,4 @@
+
 def feladat_1(a,b):
     a = a + b
     b = a - b
@@ -65,6 +66,63 @@ def feladat_6():
     else:
         print("Nem kepezheto a haromszog !")
 
+def feladat_7():
+    while True:
+        a = float(input("A kert hossza: "))
+        b = float(input("A kert szelessege: "))
+        c = float(input("A drot hossza: "))
+        if a<0 or b<0 or c<=0:
+            print("Nem megfelelo adatok !")
+        else:
+            break
+    K=2*(a+b)
+    print("Szükséges drot: ",K)
+    print("Kimaradt drot: ",c-K)
+
+
+def feladat_8(x):
+    if x<5:
+        print("f(x)= ",3*x-5)
+    elif x>=5 and x<=10:
+        print("f(x)= ",10)
+    elif x>10:
+        print("f(x)= ", 9*x+1)
+
+def feladat_8a(a,b,c,d):
+    if a+c >2*d and b >0:
+        print("E(a,b,c,d): ",d-3*b)
+    elif a+c <2*d and b <0:
+        print("E(a,b,c,d): ",d+3*b)
+    else:
+        print("E(a,b,c,d): ",4)
+
+
+def feladat9(a,b,c):
+    import math
+    d = b ** 2 - 4 * a * c
+    if d < 0:
+        print("Az egyenletnek nincs valos eredmenye")
+    elif d == 0:
+        x = (-b + math.sqrt(b ** 2 - 4 * a * c)) / 2 * a
+        print("Az egyenletnek egy megoldasa van: ", x)
+    else:
+        x1 = (-b + math.sqrt(b ** 2 - 4 * a * c)) / 2 * a
+        x2 = (-b - math.sqrt(b ** 2 - 4 * a * c)) / 2 * a
+        print("Az egyenletnek ketto megoldasa van a : ", x1, " es a ", x2)
+
+def feladat_10(evszam1,evszam2):
+    szokoev=0
+    for i in range(evszam1,evszam2+1):
+        if i %4 ==0 and i%100!=0 or i %400==0:
+            szokoev=szokoev+1
+    print("A szokoevek szama: ",szokoev)
+
+def feladat_11():
+    from datetime import datetime
+    a = datetime(1999, 2, 15)
+    now = datetime.now()
+    days=(now - a).days
+    print(days)
 
 def main():
     feladat_1(10,5)
@@ -74,5 +132,12 @@ def main():
     feladat_4(3,6,8)
     feladat_5(5,6,3,10)
     feladat_6()
+    feladat_7()
+    feladat_8(12)
+    feladat_8a(4,5,12,5)
+    feladat9(1,10,20)
+    feladat_10(1980,2400)
+    feladat_11()
+
 if __name__=="__main__":
     main()
