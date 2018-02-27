@@ -260,6 +260,35 @@ def feladat_22a(x,n):
     if x >0 and n>6:
         print(math.pow(x, n))
 
+def feladat_23(n):
+    sum = 0
+    for x in range(1, n):
+        if n % x == 0:
+            sum += x
+    return sum == n
+
+def feladat_24():
+    hettel = 0
+    tizenh = 0
+    a = float(input("Szám: "))
+    while a>0:
+        a = float(input("Szám: "))
+        if a%7==5:
+            hettel=hettel+1
+        elif a%13==7:
+            tizenh=tizenh+1
+    print(hettel,tizenh)
+
+def feladat_25(lakossag ,terulet):
+    nepsuruseg= lakossag/terulet
+    if nepsuruseg<50:
+        print("Ritkan lakott nepsuruseg a",nepsuruseg, "fo/km^2")
+    elif nepsuruseg>50 and nepsuruseg<300:
+        print("Atlagos nepsuruseg a ", nepsuruseg, "fo/km^2")
+    elif nepsuruseg>300:
+        print("Surun lakott nepsuruseg a ", nepsuruseg, "fo/km^2")
+
+
 def main():
     feladat_1(10,5)
     feladat_2(4,8,3)
@@ -286,6 +315,9 @@ def main():
     feladat_21(6243353)
     feladat_22a(2,8)
     feladat_22(2,8)
+    print(feladat_23(6))
+    feladat_24()
+    feladat_25(1000,100)
 
 if __name__=="__main__":
     main()
