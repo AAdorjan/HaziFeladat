@@ -233,6 +233,33 @@ def feladat_20(n):
             print(c)
             k+=1
 
+def feladat_21(n):
+  ujszam = 0
+  while n > 0:
+    ujszam = (10*ujszam) + n%10
+    n //= 10
+  print(ujszam)
+
+
+def feladat_22(x, n):
+    if x > 0 and n > 6:
+        eredmeny = 1
+        while n > 0:
+            if n % 2 == 0:
+                n = n / 2
+                x = x * x
+            else:
+                n = n - 1
+                eredmeny = eredmeny * x
+                n = n / 2
+                x = x * x
+        print (eredmeny)
+
+def feladat_22a(x,n):
+    import math
+    if x >0 and n>6:
+        print(math.pow(x, n))
+
 def main():
     feladat_1(10,5)
     feladat_2(4,8,3)
@@ -256,5 +283,9 @@ def main():
     feldat_18(45,17)
     feladat_19(7)
     feladat_20(5)
+    feladat_21(6243353)
+    feladat_22a(2,8)
+    feladat_22(2,8)
+
 if __name__=="__main__":
     main()
