@@ -288,8 +288,205 @@ def feladat_25(lakossag ,terulet):
     elif nepsuruseg>300:
         print("Surun lakott nepsuruseg a ", nepsuruseg, "fo/km^2")
 
+def feladat_26():
+    i = int( input ("Szam: "))
+    count_pos = 0
+    count_neg = 0
+    osszead=0
+    if (i != 0):
+        while (i != 0):
+            osszead=osszead+i
+            if osszead==0:
+                break
+            print("Eddigi osszeg:",osszead)
+            if (i > 0):
+                count_pos += 1
+            elif (i < 0):
+                count_neg += 1
+            i = int( input ("Szam: "))
+        print ("Pozitiv szamok db: ", count_pos)
+        print ("Negativ szamik db: ", count_neg)
+
+def feladat_27():
+    count_pos = 0
+    count_neg = 0
+    a1 = int(input("Szam: "))
+    a2 = int(input("Szam: "))
+    while a1 >0 and a2 <0 :
+        if a1>0:
+            count_pos += 1
+        elif a2<0:
+            count_neg += 1
+        a1 = int(input("Szam: "))
+        a2 = int(input("Szam: "))
+
+    print("Pozitiv szamok db: ", count_pos)
+    print("Negativ szamik db: ", count_neg)
+
+def feladat_28(n):
+    if n>1:
+        x = n
+        y = (x + 1) // 2
+        while y < x:
+            x = y
+            y = (x + n // x) // 2
+        print (x)
+
+def feladat_29(n):
+    if n == 0:
+        return 1
+    elif n >= 1 and n<12:
+        return n * feladat_29(n-1)
+
+def feladat_30(year,month,day):
+    import datetime as dt
+    days_in_the_year = (dt.date(year, month, day) - dt.date(year, 1, 1)).days + 1
+    print(days_in_the_year)
+
+
+import math
+def feladat_31(n):
+    i = 1
+    while i <= math.sqrt(n) + 1:
+        if (n % i == 0):
+            if (n/i == i):
+                print(i)
+            else:
+                print(i,n/i,)
+        i = i + 1
+
+def feladat_31a(n):
+    i = 1
+    while i < n:
+        if n % i == 0:
+            print(i, end =" ")
+        i = i + 1
+
+def feladat_31b(n):
+    for i in range(1, n + 1):
+        if (n % i == 0):
+            print(i, end= " ")
+
+
+def feladat_32(n1,n2,k):
+    for i in range(n1,n2+1):
+        if i %k==0:
+            print(i, end=";")
+
+def feladat_34(n):
+    primek = []
+    for num in range(1, n + 1):
+        limit = int(num ** 0.5) + 1
+        for div in range(2, limit):
+            if (num % div) == 0:
+                break
+        else:
+            primek.append(num)
+    return (primek)
+def feladat_34a(num):
+    primek = feladat_34(num)
+
+    for i in range(num // 2 + 1):
+        if num % 2 != 0:
+            print(num)
+            break
+        if i in primek and (num - i) in primek:
+            print(i, '+', num - i)
+
+
+def feladat_33(n):
+    eredmeny = []
+    for i in range(n+1):
+        c = 0
+        for n in range(1, i + 1):
+            if i % n == 0:
+                c += 1
+        eredmeny.append(c)
+    print(eredmeny.index(max(eredmeny)))
+
+
+def feladat_35(n):
+    for i in range(2, n):
+        if n % i == 0:
+            return False
+    return True
+
+def feladat_36(l):
+    sum=0
+    n=100
+    a=1
+    b=1
+    if n==1:
+        print(a)
+    elif n==2:
+        print(a,b)
+    else:
+        c=a+b
+        print(a,b,c)
+        k=3
+        while k<n:
+            a=b
+            b=c
+            c=a+b
+            print(c)
+            if c>l-a:
+                break
+            else:
+                k += 1
+                sum+=1
+        print("Darabszam: ",sum)
+
+
+def feladat_37(l):
+    n=100
+    a=1
+    b=1
+    if n==1:
+        print(a)
+    elif n==2:
+        print(a,b)
+    else:
+        c=a+b
+        print(a,b,c)
+        k=3
+        while k<n:
+            a=b
+            b=c
+            c=a+b
+
+            if c>l:
+                print(c)
+                break
+            else:
+                k += 1
+
+def feladat_38(szam,szamjegy):
+    sum=0
+    for i in str(szam):
+        if i[0]== str(szamjegy):
+            sum+=1
+    print("Szamjegyek db: ",sum)
+
+def szamjegysum(n):
+    sum = 0
+    kob=n*n*n
+    while (n > 0):
+        dig = n % 10
+        sum = sum + dig
+        n = n // 10
+    print("Szamjegyek osszege:", sum)
+
+def feladat_39(n):
+    sum = 0
+    kob = n * n * n
+    while (n > 0): #for i in range(1,1001)
+        dig = n % 10
+        sum = sum + kob
+        n = n // 10
+    print("Szamjegyek osszege:", sum)
 
 def main():
+
     feladat_1(10,5)
     feladat_2(4,8,3)
     feladat_2a(4,8,3)
@@ -318,6 +515,33 @@ def main():
     print(feladat_23(6))
     feladat_24()
     feladat_25(1000,100)
+    feladat_26()
+    feladat_27()
+    feladat_28(4554)
+    print(feladat_29(10))
+    feladat_30(1999,1,5)
+    feladat_31(100)
+    feladat_31a(100)
+    feladat_31b(100)
+    feladat_32(2,160,5)
+    feladat_34a(56)
+    feladat_33(3240)
+    feladat_35(21)
+    feladat_36(236)
+    feladat_37(236)
+    feladat_38(1234222,2)
+    szamjegysum(123)
+    feladat_39(123)
+
+
+
+
+
+
+
+
+
+
 
 if __name__=="__main__":
     main()
