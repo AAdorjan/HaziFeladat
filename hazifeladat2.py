@@ -78,6 +78,32 @@ def feladat_7(szam):
 def feladat_7a():
     print(int("1011010101", 2))
 
+def feladat_8a(n):
+    sum=0
+    for i in range(n+1):
+        sum=sum+i
+    print("A szamok osszege: ",sum)
+
+def feladat_8(n):
+    sum=0
+    db=0
+    for i in range(n+1):
+        sum=sum+i
+        db=db+1
+        if sum>=n:
+            break
+        # print(db)
+    print("Ennyi számot kell összeadni:",db-1)
+
+def feladat_9():
+    perc=1
+    magassag=1
+    while magassag<301:
+        magassag = magassag + 1 / magassag
+        perc = perc + 1
+    print("Ennyi perc alatt jut el: ",perc)
+
+
 def main():
     print(feladat_1(8))
     print(feladat_2(5))
@@ -87,6 +113,10 @@ def main():
     print(feladat_6("122","211"))
     feladat_7(342)
     feladat_7a()
+    feladat_8a(5)
+    feladat_8(5)
+    feladat_9()
+
 
 if __name__ == "__main__":
     main()
