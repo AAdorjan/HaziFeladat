@@ -103,6 +103,37 @@ def feladat_9():
         perc = perc + 1
     print("Ennyi perc alatt jut el: ",perc)
 
+def feladat_10():
+    max = 0
+    max_sor = ""
+    fajl = open("be1.txt", mode="r")
+    for sor in fajl:
+        sor = sor.strip()
+        if (sor[0].isupper() and len(sor) > max):
+            max = len(sor)
+            max_sor = sor
+    print("Leghosszabb nagybetus szo hossza:",max)
+    fajl.close()
+
+def feldat_11():
+    min = 100
+    min_sor = ""
+    fajl = open("be1.txt", mode="r")
+    for sor in fajl:
+        sor = sor.strip()
+        if ("." in sor and len(sor) < min):
+            min = len(sor)
+            min_sor = sor
+        elif( "?" in sor and len(sor) < min):
+            min = len(sor)
+            min_sor =sor
+        elif ( "!" in sor and len(sor) < min):
+            min = len(sor)
+            min_sor = sor
+    print("Legrövidebb . ! ? szo hossza:", min,min_sor)
+    fajl.close()
+
+
 
 def main():
     print(feladat_1(8))
@@ -116,6 +147,9 @@ def main():
     feladat_8a(5)
     feladat_8(5)
     feladat_9()
+    feladat_10()
+    feldat_11()
+    feladat_12()
 
 
 if __name__ == "__main__":
