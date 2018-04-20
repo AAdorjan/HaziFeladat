@@ -1,109 +1,57 @@
-"""import math as mt
+import numpy as np
+import matplotlib.pyplot as plt
+import mpmath as mpimg
 
-def is_prim(n):
-    prim=True
-    if n==1:
-        prim=False
-    for i in range(2,int(mt.sqrt(n))+1):
-        if n%i==0:
-            prim= False
-            break
-    return prim
+def mean_filter3(img):
+    resImg=np.zeros(img.shape)
 
+    for x in range(1,img.shape[0]-1):
+        for y in range(1,img.shape[1]-1):
+            resImg[x][y]=np.mean(img[x-1:x+2,y-1:y+2])
+    return resImg
 
-def lnko(a,b):
-    while True:
-        r=a%b
-        a=b
-        b=r
-        if r==0:
-            break
-    return a
+def mean_filter5(img):
+    resImg=np.zeros(img.shape)
 
+    for x in range(2,img.shape[0]-2):
+        for y in range(2,img.shape[1]-2):
+            resImg[x][y]=np.mean(img[x-2:x+3,y-2:y+3])
+    return resImg
 
-def palindrom(n):
-    masolat=n
-    uj_szam=0
-    while n!=0:
-        szj = n%10
-        uj_szam=uj_szam*10+szj
-        n=n//10
+def gaus_filter(img):
+    kernel=np.array([[1,2,1],[2,4,2],[1,2,1]])
+    resImg = np.zeros(img.shape)
+    for x in range(1, img.shape[0] - 1):
+        for y in range(1, img.shape[1] - 1):
+            resImg[x][y] =np.sum(kernel[:,:]*img[x-1:x+2,y-1:y+2])/np.sum(kernel)
 
-    return uj_szam==masolat
-
-
-def fibsor(n):
-    a=1
-    b=1
-    if n==1:
-        print(a)
-    elif n==2:
-        print(a,b)
-    else:
-        c=a+b
-        print(a,b,c)
-        k=3
-        while k<n:
-            a=b
-            b=c
-            c=a+b
-            print(c)
-            k+=1
-
-def fibo2(n):
-    a=1
-    b=1
-    k=1
-    fajl=open("ki1.txt",mode="w")
-    while k<n:
-        fajl.write("%.4f " % (a/b))
-        a=a+b
-        b=a-b
-        k=k+1
-    fajl.close()
-
-import codecs as cod
-def feladat1(fajl_nev):
-    fajl=cod.open(fajl_nev, encoding="utf-8",mode="r")
-
-    max=0
-    max_sor=""
-    for sor in fajl:
-        sor=sor.strip()
-        if(sor[0].isupper() and  len(sor)> max):
-            max=len(sor)
-            max_sor=sor
-    print(max,max_sor)
-    fajl.close()
-
-
-
-def feladat2():
-    fajl=open("be2.txt", mode="r")
-    for sor in fajl:
-        if ("   " in sor):
-            fajl= open("ki1.txt", mode="w")
-            fajl.write(sor)
-            fajl.close()
-            break
-"""
-
-def fel7(lista,betu):
-    li=[]
-    fajl=open("ki2.txt",mode="w")
-    for i in lista:
-        if i[0]== betu:
-            li.append(i)
-    fajl.write(str(li))
-    fajl.close()
-
-
-
-
+def elad(sorlap,sornev,nkorso,bevetel):
+    if sornev in sorlap:
+        if sorlap[sornev][0]/5>=nkorso:
+            sornev[sornev][0]=sorlap[sornev][0]-5*nkorso
+            bevetel=bevetel+nkorso*sorlap[sornev][1]
+        else:
+            mennyivan=sorlap[sornev][0]/5
+            sorlap[sornev][0]=0
+            bevetel=bevetel+mennyivan*sorlap[sornev][1]
+    return bevetel
 def main():
-    fel7(["alma","ananasz", "banan"],"a")
 
+    img=mpimg.imread('lena2.jpg')
+    res1=mean_filter3(img)
+    res2 = gaus_filter(img)
+    plt.subplot(131)
+    plt.imshow(res1,cmap='gray')
+    plt.subplot(132)
+    plt.imshow(res2,cmap="gray")
+    plt.show()
 
-
-if __name__=="__main__":
-    main()
+    bevetel=0
+    sorlap={}
+    sorlap['soproni']=[600,230]
+    sorlap['borsodi'] = [700, 240]
+    print(sorlap)
+    print(sorlap.keys())
+    print(sorlap.values())
+    print(elad(sorlap,"borsodi",10,bevetel))
+    print (sorlap)
