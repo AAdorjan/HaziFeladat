@@ -1,57 +1,96 @@
-import numpy as np
-import matplotlib.pyplot as plt
-import mpmath as mpimg
-
-def mean_filter3(img):
-    resImg=np.zeros(img.shape)
-
-    for x in range(1,img.shape[0]-1):
-        for y in range(1,img.shape[1]-1):
-            resImg[x][y]=np.mean(img[x-1:x+2,y-1:y+2])
-    return resImg
-
-def mean_filter5(img):
-    resImg=np.zeros(img.shape)
-
-    for x in range(2,img.shape[0]-2):
-        for y in range(2,img.shape[1]-2):
-            resImg[x][y]=np.mean(img[x-2:x+3,y-2:y+3])
-    return resImg
-
-def gaus_filter(img):
-    kernel=np.array([[1,2,1],[2,4,2],[1,2,1]])
-    resImg = np.zeros(img.shape)
-    for x in range(1, img.shape[0] - 1):
-        for y in range(1, img.shape[1] - 1):
-            resImg[x][y] =np.sum(kernel[:,:]*img[x-1:x+2,y-1:y+2])/np.sum(kernel)
+import re
 
 def elad(sorlap,sornev,nkorso,bevetel):
     if sornev in sorlap:
         if sorlap[sornev][0]/5>=nkorso:
-            sornev[sornev][0]=sorlap[sornev][0]-5*nkorso
+            sorlap[sornev][0]=sorlap[sornev][0]-5*nkorso
             bevetel=bevetel+nkorso*sorlap[sornev][1]
         else:
             mennyivan=sorlap[sornev][0]/5
             sorlap[sornev][0]=0
             bevetel=bevetel+mennyivan*sorlap[sornev][1]
     return bevetel
+
+def feltolt(sorlap,sornev,mennyi,ujar):
+    if sornev in sorlap:
+        sorlap[sornev][0]=sorlap[sornev][0]+mennyi
+        sorlap[sornev][1]=ujar
+    else:
+        sorlap[sornev]=[mennyi,ujar]
+
+def szoveg_hist():
+    try:
+        fajl=open('input.txt',mode='r')
+        dic={}
+        for sor in fajl:
+            regex = re.compile("[^a-zA-Z]")
+            sor = regex.sub(' ', sor)
+            szavak=sor.split(' ')
+            for szo in szavak:
+                if szo in dic:
+                    dic[szo]=dic[szo]+1
+                else:
+                    dic[szo]=1
+        fajl.close()
+        print(dic['Jon'])
+    except Exception as e:
+        print(e)
+
+
 def main():
-
-    img=mpimg.imread('lena2.jpg')
-    res1=mean_filter3(img)
-    res2 = gaus_filter(img)
-    plt.subplot(131)
-    plt.imshow(res1,cmap='gray')
-    plt.subplot(132)
-    plt.imshow(res2,cmap="gray")
-    plt.show()
-
-    bevetel=0
-    sorlap={}
-    sorlap['soproni']=[600,230]
+    bevetel = 0
+    sorlap = {}
+    sorlap['soproni'] = [600, 230]
     sorlap['borsodi'] = [700, 240]
     print(sorlap)
     print(sorlap.keys())
     print(sorlap.values())
-    print(elad(sorlap,"borsodi",10,bevetel))
+    print(elad(sorlap, "borsodi", 10, bevetel))
     print (sorlap)
+
+    feltolt(sorlap,"Csiki",1000,400)
+    feltolt(sorlap, "Staropramen ", 200, 300)
+    print(sorlap)
+
+    s="alma,korte,szilva?"
+    regex=re.compile("[^a-zA-Z]")
+    s=regex.sub(' ',s)
+    print(s)
+    szoveg_hist()
+
+    allat = {}
+    allat['Liaz'] = "kutya"
+    allat['Pamacs'] = "kutya"
+    allat['Zizi'] = "kigyo"
+    allat['Hajnal'] = "poni"
+
+    for key,val in allat.items():
+        print("%s egy %s" % (key,val))
+    print(allat.items())
+
+    for key in allat:
+        print(key)
+    allat2=allat.copy()
+    allat.clear()#kiuriti a szotar tartalmat
+    print(allat2.get("Liza")) #kiveszi a szotarbol a klcshoz tartozo elemet de nem torli
+    print(allat2.pop("Hajnal")) #kiveszi a szotarbol es torli
+    for val in allat2.values():
+        print(val)
+
+    gyumolcsok=['alma','korte','alma','szilva']
+    kosar=set(gyumolcsok)
+    print(kosar)
+
+    a=set('abcabcefgh')
+    b=set('ccgghhkks')
+    print(a)
+    print(b)
+    print(a-b)
+    print(a&b)
+    print(a|b)
+    print(a^b)
+
+if __name__ == "__main__":
+    main()
+
+
