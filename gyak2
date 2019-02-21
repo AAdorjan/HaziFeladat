@@ -1,0 +1,46 @@
+def fel0():
+    li=[1,2,3,4,5]
+    try:
+        print(li[6])
+    except Exception:
+        print("Rossz indexet adtam meg!")
+    finally:
+        print("OK")
+
+def fel1():
+    while True:
+        try:
+            a=int(input("szam:"))
+            break
+        except ValueError:
+            print("Nem megfeleo ertek")
+import sys
+def fel2():
+    try:
+        be=open("be.txt","r")
+        for sor in be:
+            print(sor)
+        be.close()
+    except FileNotFoundError:
+        print("A fajl nem talalhato",file=sys.stderr)
+
+def fel3():
+    try:
+        db=0
+        be1=open("be1.txt","r")
+        for sor in be1:
+            if "Lannister" in sor:
+                db+=1
+        be1.close()
+        print(db)
+    except Exception:
+        print("Hiba")
+
+def main():
+    #fel1()
+    #fel2()
+    fel3()
+
+
+if __name__ == "__main__":
+    main()
